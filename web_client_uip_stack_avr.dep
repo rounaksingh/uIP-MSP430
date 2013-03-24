@@ -2,7 +2,7 @@
 
 <project>
   <fileVersion>2</fileVersion>
-  <fileChecksum>2187781722</fileChecksum>
+  <fileChecksum>1572514970</fileChecksum>
   <configuration>
     <name>Debug</name>
     <outputs>
@@ -96,6 +96,12 @@
       <file>$PROJ_DIR$\net\psock.c</file>
       <file>$PROJ_DIR$\net\lc-switch.h</file>
       <file>$PROJ_DIR$\net\lc.h</file>
+      <file>$PROJ_DIR$\serial\serial_debug.h</file>
+      <file>$PROJ_DIR$\serial_debug\serial_debug.h</file>
+      <file>$PROJ_DIR$\serial_debug\serial_debug.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\serial_debug.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\serial_debug.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\stdarg.h</file>
     </outputs>
     <file>
       <name>$PROJ_DIR$\net_app\simple-app.c</name>
@@ -392,6 +398,25 @@
       </inputs>
     </file>
     <file>
+      <name>$PROJ_DIR$\serial_debug\serial_debug.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 94</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 93</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 17 18 24 91 95 34 32 35 78 28 30 29</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
       <name>[ROOT_NODE]</name>
       <outputs>
         <tool>
@@ -400,6 +425,10 @@
         </tool>
       </outputs>
     </file>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
   </configuration>
   <configuration>
     <name>Release</name>

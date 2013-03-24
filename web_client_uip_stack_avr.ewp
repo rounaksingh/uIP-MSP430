@@ -2020,6 +2020,12 @@
     <name>$PROJ_DIR$\net\pt.h</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\serial_debug\serial_debug.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\serial_debug\serial_debug.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\net_app\simple-app.c</name>
   </file>
   <file>
