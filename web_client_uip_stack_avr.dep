@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>2187781722</fileChecksum>
+  <configuration>
+    <name>Debug</name>
+    <outputs>
+      <file>$TOOLKIT_DIR$\config\multiplier.xcl</file>
+      <file>$PROJ_DIR$\Debug\Obj\simple-app.r43</file>
+      <file>$PROJ_DIR$\net_app\simple-app.c</file>
+      <file>$PROJ_DIR$\net_app\simple-app.h</file>
+      <file>$PROJ_DIR$\net_app\dhcpc.h</file>
+      <file>$PROJ_DIR$\net_app\dhcpc.c</file>
+      <file>$PROJ_DIR$\uNetConfigure.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\simple-app.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\dhcpc.r43</file>
+      <file>$PROJ_DIR$\net\uip_arch.d</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\dhcpc.pbi</file>
+      <file>$PROJ_DIR$\..\web_server_new\enc28j60.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\net\timer.h</file>
+      <file>$PROJ_DIR$\net\pt.h</file>
+      <file>$PROJ_DIR$\..\web_server_new\enc28j60.c</file>
+      <file>$TOOLKIT_DIR$\inc\msp430xG46x.h</file>
+      <file>$TOOLKIT_DIR$\inc\in430.h</file>
+      <file>$PROJ_DIR$\compiler.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\delay.r43</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\delay.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\delay.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
+      <file>$PROJ_DIR$\delay.c</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\string.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\ysizet.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Product.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Threads.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\xencoding_limits.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\stdint.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\yvals.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\inttypes.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\ycheck.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Defaults.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\web_client_uip_stack_avr.pbd</file>
+      <file>$TOOLKIT_DIR$\lib\dlib\dl430fn.h</file>
+      <file>$PROJ_DIR$\net\&lt;invalid loc&gt;</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\ystdio.h</file>
+      <file>$PROJ_DIR$\Debug\Exe\web_client_uip_stack_avr.d43</file>
+      <file>$PROJ_DIR$\Debug\Obj\uip_arp.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\uip_arch.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\uip.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\uip-split.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\uip-empty-packet.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\timer.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\psock.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\nic.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\uip_arp.r43</file>
+      <file>$PROJ_DIR$\net\uip.c</file>
+      <file>$PROJ_DIR$\net\uip_arp.c</file>
+      <file>$PROJ_DIR$\net\uip_arch.h</file>
+      <file>$PROJ_DIR$\net\uip_arch.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\psock.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\enc28j60.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\uip-empty-packet.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\enc28j60.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\nic.r43</file>
+      <file>$PROJ_DIR$\net\uip-split.c</file>
+      <file>$PROJ_DIR$\net\VERSION.h</file>
+      <file>$PROJ_DIR$\net\uip.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\uip-split.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\timer.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\uip.r43</file>
+      <file>$PROJ_DIR$\net\uipopt.h</file>
+      <file>$PROJ_DIR$\net\uip_arp.h</file>
+      <file>$PROJ_DIR$\net\uip-empty-packet.c</file>
+      <file>$PROJ_DIR$\net\uip-conf.h</file>
+      <file>$PROJ_DIR$\net\uip-empty-packet.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\stdio.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\uip_arch.r43</file>
+      <file>$PROJ_DIR$\net\uip-split.h</file>
+      <file>$PROJ_DIR$\net\lc-addrlabels.h</file>
+      <file>$PROJ_DIR$\net\enc28j60def.h</file>
+      <file>$PROJ_DIR$\net\enc28j60.h</file>
+      <file>$PROJ_DIR$\net\psock.h</file>
+      <file>$PROJ_DIR$\net\timer.c</file>
+      <file>$TOOLKIT_DIR$\lib\dlib\dl430xsfn.h</file>
+      <file>$PROJ_DIR$\..\uart_9600_2\MSP430_ExpB_RS232.c</file>
+      <file>$PROJ_DIR$\net\enc28j60.c</file>
+      <file>$PROJ_DIR$\net\clock.h</file>
+      <file>$TOOLKIT_DIR$\config\lnk430FG4618.xcl</file>
+      <file>$TOOLKIT_DIR$\lib\dlib\dl430xsfn.r43</file>
+      <file>$PROJ_DIR$\net\clock-arch.h</file>
+      <file>$PROJ_DIR$\net\nic.h</file>
+      <file>$PROJ_DIR$\net\nic.c</file>
+      <file>$PROJ_DIR$\net\psock.c</file>
+      <file>$PROJ_DIR$\net\lc-switch.h</file>
+      <file>$PROJ_DIR$\net\lc.h</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\net_app\simple-app.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 7</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 1</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 3 61 65 68 31 34 32 35 78 28 30 29 6</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 3 61 65 68 31 34 32 35 78 28 30 29 6</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\net_app\dhcpc.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 11</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 8</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 70 34 32 35 78 28 30 29 27 39 26 61 65 68 31 6 3 4 14 81 84 15 89 88</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 70 34 32 35 78 28 30 29 27 39 26 61 65 68 31 6 3 4 14 81 84 15 89 88</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 13</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 10</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 6 22 31 34 32 35 78 28 30 29 19 17 18 24 81 84 14 61 65 68 3 85 66 4 15 89 88 69</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 6 22 31 34 32 35 78 28 30 29 19 17 18 24 81 84 14 61 65 68 3 85 66 4 15 89 88 69</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\delay.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 23</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 20</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 17 18 24 22 31 34 32 35 78 28 30 29</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 17 18 24 22 31 34 32 35 78 28 30 29</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\web_client_uip_stack_avr.d43</name>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 82 0 20 8 55 10 58 54 1 63 56 64 71 49 83</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\net\uip.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 43</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 64</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 61 65 68 31 34 32 35 78 28 30 29 6 3 52 26 27</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 61 65 68 31 34 32 35 78 28 30 29 6 3 52 26 27</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\net\uip_arp.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 41</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 49</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 66 61 65 68 31 34 32 35 78 28 30 29 6 3 26 27</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 66 61 65 68 31 34 32 35 78 28 30 29 6 3 26 27</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\net\uip_arch.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 42</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 71</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 61 65 68 31 34 32 35 78 28 30 29 6 3 52</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 61 65 68 31 34 32 35 78 28 30 29 6 3 52</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\net\uip-split.c</name>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 26 34 32 35 37 28 30 29 27 72 61 65 68 33 31 38 85 52</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\net\uip-empty-packet.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 45</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 56</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 26 34 32 35 78 28 30 29 27 72 61 65 68 31 6 3 52 85 19 17 18 24</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 26 34 32 35 78 28 30 29 27 72 61 65 68 31 6 3 52 85 19 17 18 24</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\net\timer.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 46</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 63</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 81 84 14</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 81 84 14</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\net\enc28j60.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 57</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 55</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 19 17 18 24 61 65 68 31 34 32 35 78 28 30 29 6 3 75 74 22</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 19 17 18 24 61 65 68 31 34 32 35 78 28 30 29 6 3 75 74 22</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\net\nic.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 48</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 58</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 6 85 61 65 68 31 34 32 35 78 28 30 29 3 19 17 18 24 75</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 6 85 61 65 68 31 34 32 35 78 28 30 29 3 19 17 18 24 75</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\net\psock.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 54</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 26 34 32 35 78 28 30 29 27 65 68 31 6 3 61 76 15 89 88</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 26 34 32 35 78 28 30 29 27 65 68 31 6 3 61 76 15 89 88</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 40</file>
+        </tool>
+      </outputs>
+    </file>
+  </configuration>
+  <configuration>
+    <name>Release</name>
+    <outputs/>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+  </configuration>
+</project>
+
+
