@@ -4,7 +4,7 @@
 #include "compiler.h"
 
 #if DEBUG_SERIAL
-//#include "SerialStream.h" // UART printf
+  #include "serial_debug/serial_debug.h" // UART printf
 #endif //DEBUG_SERIAL
 
 #include "net/clock.h"
@@ -80,7 +80,7 @@ __interrupt void Timer_A (void)
 void uip_log(char *msg)
 {
 #if DEBUG_SERIAL
-  //printf(msg);
+  printf(msg);
 #endif 
 }
 
@@ -113,7 +113,8 @@ int main(void)
   //setup serial port 
   
 #if DEBUG_SERIAL
-  //SerialStream_Init(9600,0);
+    debug_serial_init();
+    printf("asd  %i",23244);
 #endif 
 	
 	for(i=0;i<6;i++)
@@ -121,35 +122,35 @@ int main(void)
 	
   // init NIC device driver
 #if DEBUG_SERIAL
- 	/*
-	printf_P(PSTR("MAC address:%02x:%02x:%02x:%02x:%02x:%02x\r\n"),
-			(int)_eth_addr[0],(int)_eth_addr[1],(int)_eth_addr[2],
+ 	
+	printf("MAC address:%x:%x:%x:%x:%x:%x\r\n",\
+			(int)_eth_addr[0],(int)_eth_addr[1],(int)_eth_addr[2],\
 			(int)_eth_addr[3],(int)_eth_addr[4],(int)_eth_addr[5]);
 
-  printf_P(PSTR("Initializing NIC...\r\n"));
-  */
+        printf("Initializing NIC...\r\n");
+  
 #endif
 
   nic_init(_eth_addr);
 
   uip_ipaddr_t ipaddr;
 
-	uip_setethaddr(uNet_eth_address);
+  uip_setethaddr(uNet_eth_address);
 
 #if DEBUG_SERIAL
-  //printf_P(PSTR("Initializing uIP...\r\n"));
+  printf("Initializing uIP...\r\n");
 #endif 
   //init uIP
   uip_init();
 
 #if DEBUG_SERIAL
-  //printf_P(PSTR("Initializing ARP...\r\n"));
+  printf("Initializing ARP...\r\n");
 #endif 
   //init ARP cache
   uip_arp_init();
 
 #if DEBUG_SERIAL
-  //printf_P(PSTR("Initializing timer...\r\n"));
+  printf("Initializing timer...\r\n");
 #endif 
   // init periodic timer
   clock_init();
@@ -161,20 +162,20 @@ int main(void)
 	{
 
 #if DEBUG_SERIAL
-  	//printf_P(PSTR("Initializing tcp/ip settings\r\n"));
+  	printf("Initializing tcp/ip settings\r\n");
 #endif
 	
 #if DEBUG_SERIAL
-/*
-  	printf_P(PSTR("IP %d.%d.%d.%d\r\n"),
+
+  	printf("IP %i.%i.%i.%i\r\n",
 			(int)_ip_addr[0],(int)_ip_addr[1],(int)_ip_addr[2],(int)_ip_addr[3]);
 
-  	printf_P(PSTR("NetMask %d.%d.%d.%d\r\n"),
+  	printf("NetMask %i.%i.%i.%i\r\n",
 			(int)_net_mask[0],(int)_net_mask[1],(int)_net_mask[2],(int)_net_mask[3]);
 
-  	printf_P(PSTR("Gateway %d.%d.%d.%d\r\n"),
+  	printf("Gateway %i.%i.%i.%i\r\n",
 			(int)_gateway[0],(int)_gateway[1],(int)_gateway[2],(int)_gateway[3]);
-*/
+
 #endif
 
 		uip_ipaddr(ipaddr, _ip_addr[0], _ip_addr[1], _ip_addr[2], _ip_addr[3]);
@@ -187,7 +188,7 @@ int main(void)
 		uip_setdraddr(ipaddr);
 	} else {
 #if DEBUG_SERIAL
-	//	printf_P(PSTR("Going to query DHCP server...\r\n"));
+		printf("Going to query DHCP server...\r\n");
 #endif
 
     uip_ipaddr(ipaddr, 0, 0, 0, 0);
@@ -219,7 +220,7 @@ int main(void)
 	/* Scheduling - routine never returns, so put this last in the main function */
 	//Scheduler_Start();
 #if DEBUG_SERIAL
-		//printf_P(PSTR("Starting main loop...\r\n"));
+		printf("Starting main loop...\r\n");
 #endif
 	while(1) {
 		NetTask();

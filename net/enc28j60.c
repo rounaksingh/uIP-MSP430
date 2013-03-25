@@ -26,11 +26,12 @@
 *								Jonathan Granade
 *
 ************************************************************/
-
+#include "../uNetConfigure.h"
 #include "../compiler.h"
 #include "uip.h"
 #include "enc28j60.h"
 #include "enc28j60def.h"
+#include "../serial_debug/serial_debug.h"
 //#ifdef ENC28J60_ERRATA_B7
 #include "../delay.h"
 //#endif //ENC28J60_ERRATA_B7
@@ -450,18 +451,18 @@ void enc28j60ReceiveOverflowRecover(void)
 void enc28j60RegDump(void)
 {
 #ifdef ENC28J60_DEBUG
-  printf_P(PSTR("RevID: 0x%x\r\n"), enc28j60Read(EREVID));
+  printf("RevID: 0x%x\r\n", enc28j60Read(EREVID));
 
-  printf_P(PSTR("Cntrl: ECON1 ECON2 ESTAT  EIR  EIE\r\n"));
-  printf_P(PSTR("       0x%02x 0x%02x 0x%02x 0x%02x 0x%02x\r\n"),
+  printf("Cntrl: ECON1 ECON2 ESTAT  EIR  EIE\r\n");
+  printf("       0x%x 0x%x 0x%x 0x%x 0x%x\r\n",
     enc28j60Read(ECON1),
     enc28j60Read(ECON2),
     enc28j60Read(ESTAT),
     enc28j60Read(EIR),
     enc28j60Read(EIE));
 
-  printf_P(PSTR("PHY  : PHCON1  PHSTAT1 PHSTAT2 PHID1 PHID2 PHCON2 PHIE PHIR PHLCON\r\n"));
-  printf_P(PSTR("       %04x    %04x    %04x    %04x  %04x   %04x  %04x %04x %04x\r\n"),
+  printf("PHY  : PHCON1  PHSTAT1 PHSTAT2 PHID1 PHID2 PHCON2 PHIE PHIR PHLCON\r\n");
+  printf("       %x    %x    %x    %x  %x   %x  %x %x %x\r\n",
      enc28j60PhyRead(PHCON1),
      enc28j60PhyRead(PHSTAT1),
      enc28j60PhyRead(PHSTAT2),
@@ -472,8 +473,8 @@ void enc28j60RegDump(void)
      enc28j60PhyRead(PHIR),
      enc28j60PhyRead(PHLCON));
 
-  printf_P(PSTR("MAC  : MACON1  MACON3  MACON4  MAC-Address\r\n"));
-  printf_P(PSTR("       0x%02x  0x%02x 0x%02x   %02x:%02x:%02x:%02x:%02x:%02x\r\n"),
+  printf("MAC  : MACON1  MACON3  MACON4  MAC-Address\r\n");
+  printf("       0x%x  0x%x 0x%x   %x:%x:%x:%x:%x:%x\r\n",
      enc28j60Read(MACON1),
      enc28j60Read(MACON3),
      enc28j60Read(MACON4),
@@ -484,19 +485,19 @@ void enc28j60RegDump(void)
      enc28j60Read(MAADR1),
      enc28j60Read(MAADR0));
 
-  printf_P(PSTR("Rx   : ERXST  ERXND  ERXWRPT ERXRDPT ERXFCON EPKTCNT MAMXFL\r\n"));
-  printf_P(PSTR("       0x%04x 0x%04x 0x%04x   0x%04x 0x%02x 0x%02x 0x%04x\r\n"),
+  printf("Rx   : ERXST  ERXND  ERXWRPT ERXRDPT ERXFCON EPKTCNT MAMXFL\r\n");
+  printf("       0x%x 0x%x 0x%x   0x%x 0x%x 0x%x 0x%x\r\n",
      enc28j60Read16(ERXSTL),
      enc28j60Read16(ERXNDL),
      enc28j60Read16(ERXWRPTL),
-     (enc28j60Read16(ERXRDPTL),
+     enc28j60Read16(ERXRDPTL),
      enc28j60Read(ERXFCON),
      enc28j60Read(EPKTCNT),
      enc28j60Read16(MAMXFLL));
 
-  printf_P(PSTR("Tx   : ETXST  ETXND  MACLCON1 MACLCON2 MAPHSUP\r\n"));
-  printf_P(PSTR("       0x%04x 0x%04x 0x%04x   0x%02x   0x%02x\r\n"),
+  printf("Tx   : ETXST  ETXND  MACLCON1 MACLCON2 MAPHSUP\r\n");
+  printf("       0x%x 0x%x 0x%x   0x%x   0x%x\r\n",
            enc28j60Read16(ETXNDL),
-     (enc28j60Read(MACLCON1)<<8)|enc28j60Read(ETXNDL),
+     (enc28j60Read(MACLCON1)<<8)|enc28j60Read(ETXNDL));
 #endif//ENC28J60_DEBUG     
 }

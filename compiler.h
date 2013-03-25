@@ -20,10 +20,6 @@
 #define _BV(x)	   (1<<x)
 
 
-//#include <avr/signal.h>
-//#include <avr/interrupt.h>
-//#include <avr/io.h>
-
 #define outp(val, reg)  (reg = val)
 #define inp(reg)        (reg)
 

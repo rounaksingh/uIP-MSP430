@@ -70,8 +70,8 @@
 			       the default router */
 
 // Serial Debug configuration
-#define DEBUG_SERIAL 0
-
+#define DEBUG_SERIAL 1
+#define ENC28J60_DEBUG 1
 
 // which mechanism to use for protothreads
 //#define LC_CONF_INCLUDE "lc-addrlabels.h" // using special GCC feature (uses sligtly less program memory)
@@ -79,5 +79,5 @@
 
 // UIP debug messages 
 #define DEBUG_PRINTF(...) /*printf(__VA_ARGS__)*/
-
+   
 #endif //__UNETCONFIGURE_H__
