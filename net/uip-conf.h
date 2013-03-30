@@ -166,9 +166,9 @@ typedef unsigned short uip_stats_t;
 //#include "telnetd.h"
 //#include "webserver/webserver.h"
 //#include "net_app/dhcpc.h"
-//#include "resolv.h"
-//#include "webclient.h"
-#include "../net_app/simple-app.h"
+//#include "../net_app/resolv/resolv.h"
+#include "../net_app/webclient/webclient.h"
+//#include "../net_app/simple-app.h"
 
 #endif /* __UIP_CONF_H__ */
 

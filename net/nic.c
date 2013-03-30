@@ -24,7 +24,7 @@ void nic_init(uint8_t *eth_addr)
 
 void nic_send(void)
 {
-#if DEBUG_SERIAL
+#ifdef DEBUG_SERIAL
 	printf("Sending %i bytes\r\n",(int)uip_len);
 #endif
   enc28j60PacketSend((u8 *)uip_buf, uip_len);
@@ -43,7 +43,7 @@ uint16_t nic_poll(void)
 	// drop anything too big for the buffer
 	if( packetLength > UIP_BUFSIZE )
 	{
-#if DEBUG_SERIAL
+#ifdef DEBUG_SERIAL
           printf("Recieved big packet %i bytes, dropping \r\n",(int)uip_len);
 #endif
 	  enc28j60EndPacketReceive();
@@ -54,7 +54,7 @@ uint16_t nic_poll(void)
 	enc28j60PacketReceive( uip_buf, packetLength );
 	enc28j60EndPacketReceive();
 
-#if DEBUG_SERIAL
+#ifdef DEBUG_SERIAL
           printf("Recieved & transferred to uip, packet %i bytes\r\n",(int)uip_len);
 #endif
 

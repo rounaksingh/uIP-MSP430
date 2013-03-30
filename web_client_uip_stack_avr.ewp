@@ -955,7 +955,11 @@
         <debug>1</debug>
         <option>
           <name>CUTest</name>
-          <state>###Uninitialized###</state>
+          <state>-I$TOOLKIT_DIR$\inc</state>
+          <state>-@$TOOLKIT_DIR$\bin\iar.cmd</state>
+          <state>-@$PROJ_DIR$\source.txt</state>
+          <state>-@$PROJ_DIR$\include.txt</state>
+          <state>--preinclude=$PROJ_DIR$\IAR_ULPAdvisor_Defs.h</state>
         </option>
         <option>
           <name>ULPRules</name>
@@ -968,7 +972,7 @@
         </option>
         <option>
           <name>OutputFile</name>
-          <state></state>
+          <state>$PROJ_FNAME$.ulp</state>
         </option>
         <option>
           <name>ULPStatus</name>
@@ -1978,12 +1982,6 @@
     <name>$PROJ_DIR$\delay.h</name>
   </file>
   <file>
-    <name>$PROJ_DIR$\net_app\dhcpc.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\net_app\dhcpc.h</name>
-  </file>
-  <file>
     <name>$PROJ_DIR$\net\enc28j60.c</name>
   </file>
   <file>
@@ -2026,12 +2024,6 @@
     <name>$PROJ_DIR$\serial_debug\serial_debug.h</name>
   </file>
   <file>
-    <name>$PROJ_DIR$\net_app\simple-app.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\net_app\simple-app.h</name>
-  </file>
-  <file>
     <name>$PROJ_DIR$\net\timer.c</name>
   </file>
   <file>
@@ -2065,6 +2057,12 @@
     <name>$PROJ_DIR$\net\uip_arp.h</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\net\uiplib.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\net\uiplib.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\net\uipopt.h</name>
   </file>
   <file>
@@ -2072,6 +2070,12 @@
   </file>
   <file>
     <name>$PROJ_DIR$\net\VERSION.h</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\net_app\webclient\webclient.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\net_app\webclient\webclient.h</name>
   </file>
 </project>
 

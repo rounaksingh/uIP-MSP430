@@ -3,18 +3,18 @@
 #include "delay.h"
 #include "compiler.h"
 
-#if DEBUG_SERIAL
+//#if DEBUG_SERIAL
   #include "serial_debug/serial_debug.h" // UART printf
-#endif //DEBUG_SERIAL
+//#endif //DEBUG_SERIAL
 
 #include "net/clock.h"
 #include "net/timer.h"
 #include "net/uip.h"
 #include "net/nic.h"
 #include "net/uip_arp.h"
-#include "net_app/dhcpc.h"
+//#include "net_app/dhcpc.h"
 
-#include "net_app/simple-app.h"
+//#include "net_app/simple-app.h"
 
 #if UIP_SPLIT_HACK
 #include "net/uip-split.h"
@@ -83,7 +83,7 @@ void uip_log(char *msg)
   printf(msg);
 #endif 
 }
-
+/*
 // Callback for when DHCP client has been configured.
 void dhcpc_configured(const struct dhcpc_state *s)
 {
@@ -91,6 +91,8 @@ void dhcpc_configured(const struct dhcpc_state *s)
 	uip_setnetmask(&s->netmask);
 	uip_setdraddr(&s->default_router);
 }
+
+*/
 
 int main(void)
 {
@@ -155,6 +157,11 @@ int main(void)
   // init periodic timer
   clock_init();
 
+//#if DEBUG_SERIAL
+  printf("Initializing webclient...\r\n");
+//#endif 
+    webclient_init();
+    
   _EINT();                               // reenable interrupts
 
 
@@ -165,7 +172,7 @@ int main(void)
   	printf("Initializing tcp/ip settings\r\n");
 #endif
 	
-#if DEBUG_SERIAL
+//#if DEBUG_SERIAL
 
   	printf("IP %i.%i.%i.%i\r\n",
 			(int)_ip_addr[0],(int)_ip_addr[1],(int)_ip_addr[2],(int)_ip_addr[3]);
@@ -176,7 +183,7 @@ int main(void)
   	printf("Gateway %i.%i.%i.%i\r\n",
 			(int)_gateway[0],(int)_gateway[1],(int)_gateway[2],(int)_gateway[3]);
 
-#endif
+//#endif
 
 		uip_ipaddr(ipaddr, _ip_addr[0], _ip_addr[1], _ip_addr[2], _ip_addr[3]);
     uip_sethostaddr(ipaddr);
@@ -200,14 +207,14 @@ int main(void)
   timer_set(&periodic_timer, CLOCK_SECOND * 2 );
   timer_set(&arp_timer, CLOCK_SECOND * 10);
 
-	example1_init();
-
+	
+/*
 	if(_enable_dhcp)
 	{
 		dhcpc_init(&uNet_eth_address.addr[0], 6);
 		dhcpc_request();
 	}
-
+*/
 	/* Initialize Scheduler so that it can be used */
 	//Scheduler_Init();
 
@@ -219,11 +226,12 @@ int main(void)
 
 	/* Scheduling - routine never returns, so put this last in the main function */
 	//Scheduler_Start();
-#if DEBUG_SERIAL
+//#if DEBUG_SERIAL
 		printf("Starting main loop...\r\n");
-#endif
+//#endif
 	while(1) {
 		NetTask();
+                webclient_get("www", SERVER_PORT,"/");
 	}
 }
 
