@@ -3,9 +3,9 @@
 #include "delay.h"
 #include "compiler.h"
 
-//#if DEBUG_SERIAL
+#if DEBUG_SERIAL
   #include "serial_debug/serial_debug.h" // UART printf
-//#endif //DEBUG_SERIAL
+#endif //DEBUG_SERIAL
 
 #include "net/clock.h"
 #include "net/timer.h"
@@ -67,20 +67,18 @@ void clock_init(void)
 * This function is the interrupt service routine for Timer A. The timer is setup
 * to generate a interrupt and run the contents of this function every second.
 */
-#pragma vector=TIMERA0_VECTOR
-__interrupt void Timer_A (void)
+
+interrupt(TIMERA0_VECTOR) timera0_isr(void)
 {
   timerCounter++;
-  P5OUT|=BIT1;
-  _delay_ms(100);
-  P5OUT&=~BIT1;
+  
 }
 
 //! log uip messages
 void uip_log(char *msg)
 {
 #if DEBUG_SERIAL
-  printf(msg);
+  printf("%s",msg);
 #endif 
 }
 /*
@@ -97,13 +95,15 @@ void dhcpc_configured(const struct dhcpc_state *s)
 int main(void)
 {
 	uint8_t i;
-        
+
+   WDTCTL = WDTPW + WDTHOLD;               //Stop WDT
+
   P5DIR|=BIT1;
   //P5OUT&=~BIT1;
   P5OUT|=BIT1;
   _DINT();                                //Disable Interrupts   -- For initlization purposes
-   WDTCTL = WDTPW + WDTHOLD;               //Stop WDT
-
+	
+	
    /*
    Set System Clock Frequency to (121+1) * 32786 * 2 = 7.995392Mhz
    This freq. allows for 2400 - 230400 bit rate UART operation with less than 0.86% error
@@ -112,12 +112,27 @@ int main(void)
    SCFI0 = (FLLD_2 | FN_8);               //Set Multiplier to 2, and DCO range to 8MHz nominal
    SCFQCTL = 121;                         //7.995392Mhz Operation with No Modulation
   
+  P5OUT|=BIT1;
+		  _delay_ms(100);
+		  P5OUT&=~BIT1;
+		  _delay_ms(100);
+		  
+		  P5OUT|=BIT1;
+		  _delay_ms(100);
+		  P5OUT&=~BIT1;
+		  _delay_ms(100);
+		  
   //setup serial port 
   
 #if DEBUG_SERIAL
     debug_serial_init();
-    printf("asd  %i",23244);
+    printf("asd  %d",23244);
+    while(!(IFG2 & UCA0TXIFG));   //Wait until transmit buffer is empty
+   	UCA0TXBUF = 0x90;                 //Send character
+   	debug_puts("Rounak");
 #endif 
+
+
 	
 	for(i=0;i<6;i++)
 		uNet_eth_address.addr[i]=_eth_addr[i];
@@ -129,13 +144,13 @@ int main(void)
 			(int)_eth_addr[0],(int)_eth_addr[1],(int)_eth_addr[2],\
 			(int)_eth_addr[3],(int)_eth_addr[4],(int)_eth_addr[5]);
 
-        printf("Initializing NIC...\r\n");
+   printf("Initializing NIC...\r\n");
   
 #endif
 
   nic_init(_eth_addr);
 
-  uip_ipaddr_t ipaddr;
+ uip_ipaddr_t ipaddr;
 
   uip_setethaddr(uNet_eth_address);
 
@@ -157,12 +172,12 @@ int main(void)
   // init periodic timer
   clock_init();
 
-//#if DEBUG_SERIAL
-  printf("Initializing webclient...\r\n");
-//#endif 
-    webclient_init();
+#if DEBUG_SERIAL
+  printf("Enabling Interrupts...\r\n");
+#endif 
     
   _EINT();                               // reenable interrupts
+
 
 
 	if(!_enable_dhcp)
@@ -172,18 +187,18 @@ int main(void)
   	printf("Initializing tcp/ip settings\r\n");
 #endif
 	
-//#if DEBUG_SERIAL
+#if DEBUG_SERIAL
 
-  	printf("IP %i.%i.%i.%i\r\n",
+  	printf("IP %d.%d.%d.%d\r\n",
 			(int)_ip_addr[0],(int)_ip_addr[1],(int)_ip_addr[2],(int)_ip_addr[3]);
 
-  	printf("NetMask %i.%i.%i.%i\r\n",
+  	printf("NetMask %d.%d.%d.%d\r\n",
 			(int)_net_mask[0],(int)_net_mask[1],(int)_net_mask[2],(int)_net_mask[3]);
 
-  	printf("Gateway %i.%i.%i.%i\r\n",
+  	printf("Gateway %d.%d.%d.%d\r\n",
 			(int)_gateway[0],(int)_gateway[1],(int)_gateway[2],(int)_gateway[3]);
 
-//#endif
+#endif
 
 		uip_ipaddr(ipaddr, _ip_addr[0], _ip_addr[1], _ip_addr[2], _ip_addr[3]);
     uip_sethostaddr(ipaddr);
@@ -207,7 +222,7 @@ int main(void)
   timer_set(&periodic_timer, CLOCK_SECOND * 2 );
   timer_set(&arp_timer, CLOCK_SECOND * 10);
 
-	
+	example1_init();
 /*
 	if(_enable_dhcp)
 	{
@@ -226,12 +241,12 @@ int main(void)
 
 	/* Scheduling - routine never returns, so put this last in the main function */
 	//Scheduler_Start();
-//#if DEBUG_SERIAL
+#if DEBUG_SERIAL
 		printf("Starting main loop...\r\n");
-//#endif
+#endif
 	while(1) {
 		NetTask();
-                webclient_get("www", SERVER_PORT,"/");
+		
 	}
 }
 
@@ -242,7 +257,11 @@ TASK(NetTask)
 
 	uip_len = nic_poll();
 	if(uip_len > 0) {
-
+			//////////////////////////////////////////////////////////////////
+			//blink for packet received
+			P5OUT|=BIT1;
+		  _delay_ms(1);
+		  ////////////////////////////////////////////////////////////////////
 		if(BUF->type == htons(UIP_ETHTYPE_IP)) {
 			
 			uip_arp_ipin();
@@ -273,7 +292,11 @@ TASK(NetTask)
 
 			}
 		}
-
+		////////////////////////////////////////////////////////////////
+		//blink for packet received
+		  P5OUT&=~BIT1;
+		  _delay_ms(1);
+		  ///////////////////////////////////////////////////////////////
 	} else if(timer_expired(&periodic_timer)) {
 		timer_reset(&periodic_timer);
 		for(i = 0; i < UIP_CONNS; i++) {

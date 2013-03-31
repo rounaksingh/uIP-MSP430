@@ -3,30 +3,15 @@
 
 // choose your AVR device here
 //#include <iom128v.h>
-#include "msp430xG46x.h"
-
+#include <msp430.h>
+#include <legacymsp430.h>
 #define outp(val, reg)  (reg = val)
 #define inp(reg)        (reg)
-
-#define cli()           CLI()
-#define sei()           SEI()
-//#define cbi(reg, bit)   (reg &= ~(1<<bit))
-//#define sbi(reg, bit)   (reg |= (1<<bit))
 
 #define SIGNAL(x)       void x(void)  
 
-#define nop() NOP()
-
-#define _BV(x)	   (1<<x)
-
-
-#define outp(val, reg)  (reg = val)
-#define inp(reg)        (reg)
-
 #define cbi(p, q) ((p) &= ~_BV(q))
 #define sbi(p, q) ((p) |= _BV(q))
-
-//#define nop() asm volatile("nop\n\t"::);
 
 
 typedef unsigned char u8;

@@ -903,7 +903,7 @@ struct uip_udp_conn *uip_udp_new(uip_ipaddr_t *ripaddr, u16_t rport);
 
  uip_ipaddr(&ipaddr1, 192,16,1,2);
  if(uip_ipaddr_cmp(&ipaddr2, &ipaddr1)) {
-    printf("They are the same");
+    debug_printf("They are the same");
  }
  \endcode
  *
@@ -933,7 +933,7 @@ struct uip_udp_conn *uip_udp_new(uip_ipaddr_t *ripaddr, u16_t rport);
  uip_ipaddr(&ipaddr1, 192,16,1,2);
  uip_ipaddr(&ipaddr2, 192,16,1,3);
  if(uip_ipaddr_maskcmp(&ipaddr1, &ipaddr2, &mask)) {
-    printf("They are the same");
+    debug_printf("They are the same");
  }
  \endcode
  *
@@ -1503,7 +1503,7 @@ struct uip_udpip_hdr {
  *
  * Example:
  \code
- snprintf(uip_appdata, UIP_APPDATA_SIZE, "%u\n", i);
+ sndebug_printf(uip_appdata, UIP_APPDATA_SIZE, "%u\n", i);
  \endcode
  *
  * \hideinitializer

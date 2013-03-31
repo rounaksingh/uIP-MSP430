@@ -8,11 +8,23 @@
 # $(TARGET).elf $(TARGET).hex and $(TARGET).txt nad $(TARGET).map are all generated.
 # The TXT file is used for BSL loading, the ELF can be used for JTAG use
 # 
+
 TARGET     = main
 MCU        = msp430fg4618
+
+#
+#
+DEPEND_DIR= .depend
+OBJECT_DIR= .object
+BIN_DIR= bin
 # List all the source files here
 # eg if you have a source file foo.c then list it here 
-SOURCES = main.c
+SOURCES = main.c delay.c
+SOURCES += net/enc28j60.c net/nic.c net/psock.c net/timer.c net/uip.c
+SOURCES += net/uip_arch.c net/uip_arp.c net/uip-empty-packet.c
+SOURCES += net_app/simple-app.c serial_debug/serial_debug.c
+#SOURCES = main2.c delay.c serial_debug/serial_debug.c
+
 # Include are located in the Include directory
 INCLUDES = -IInclude
 # Add or subtract whatever MSPGCC flags you want. There are plenty more
@@ -36,12 +48,23 @@ MAKETXT  = srec_cat
 CP       = cp -p
 RM       = rm -f
 MV       = mv
+MKDIR    = mkdir
 ########################################################################################
 # the file which will include dependencies
-DEPEND = $(SOURCES:.c=.d)
+DEPEND = $(DEPEND_DIR)/$(SOURCES:.c=.d)
 # all the object files
-OBJECTS = $(SOURCES:.c=.o)
-all: $(TARGET).elf $(TARGET).hex $(TARGET).txt 
+OBJECTS = $(OBJECT_DIR)/$(SOURCES:.c=.o)
+
+make_depend_dir:
+	$(MKDIR) $(DEPEND_DIR) 2>/dev/null
+
+make_object_dir:
+	$(MKDIR) $(OBJECT_DIR) 2>/dev/null
+
+dir: make_object_dir
+
+all: clean dir $(TARGET).elf $(TARGET).hex $(TARGET).txt
+
 $(TARGET).elf: $(OBJECTS)
 	echo "Linking "$@
 	$(CC) $(OBJECTS) $(LDFLAGS) $(LIBS) -o $@
@@ -56,7 +79,7 @@ $(TARGET).elf: $(OBJECTS)
 	$(MAKETXT) -O $@ -TITXT $< -I
 	#unix2dos $(TARGET).txt
 #  The above line is required for the DOS based TI BSL tool to be able to read the txt file generated from linux/unix systems.
-%.o: %.c
+./$(OBJECT_DIR)/%.o: %.c
 	echo "Compiling $<"
 	$(CC) -c $(CFLAGS) -o $@ $<
 # rule for making assembler source listing, to see the code
@@ -69,12 +92,13 @@ endif
 # dependencies file
 # includes also considered, since some of these are our own
 # (otherwise use -MM instead of -M)
-%.d: %.c
+./$(DEPEND_DIR)/%.d: %.c make_depend_dir
 	echo "Generating dependencies $@ from $<"
-	$(CC) -M ${CFLAGS} $< >$@
+	$(CC) -M ${CFLAGS} $< > $@
 .SILENT:
 .PHONY:	clean
 clean:
+	echo Cleaning Up
 	-$(RM) $(OBJECTS)
 	-$(RM) $(TARGET).hex
 	-$(RM) $(TARGET).eep
@@ -86,4 +110,4 @@ clean:
 	-$(RM) $(TARGET).txt
 	-$(RM) $(SOURCES:.c=.lst)
 	-$(RM) $(DEPEND)
-
+	-$(RM) -r $(DEPEND_DIR) $(OBJECT_DIR)

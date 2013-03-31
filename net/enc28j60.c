@@ -496,8 +496,8 @@ void enc28j60RegDump(void)
      enc28j60Read16(MAMXFLL));
 
   printf("Tx   : ETXST  ETXND  MACLCON1 MACLCON2 MAPHSUP\r\n");
-  printf("       0x%x 0x%x 0x%x   0x%x   0x%x\r\n",
+  /*printf("       0x%x 0x%x 0x%x   0x%x   0x%x\r\n",
            enc28j60Read16(ETXNDL),
-     (enc28j60Read(MACLCON1)<<8)|enc28j60Read(ETXNDL));
+     (enc28j60Read(MACLCON1)<<8)|enc28j60Read(ETXNDL));*/
 #endif//ENC28J60_DEBUG     
 }
