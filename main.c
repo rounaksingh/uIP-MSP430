@@ -43,15 +43,20 @@ uint8_t _ip_addr[4]={UIP_IPADDR0, UIP_IPADDR1, UIP_IPADDR2, UIP_IPADDR3};
 uint8_t _net_mask[4]={UIP_NETMASK0, UIP_NETMASK1, UIP_NETMASK2, UIP_NETMASK3};
 uint8_t _gateway[4]={UIP_DRIPADDR0, UIP_DRIPADDR1, UIP_DRIPADDR2, UIP_DRIPADDR3};
 
+/* This function is callback function declared in net/clock.h 
+ * Returns current timerCounter.
+ */
 clock_time_t clock_time(void)
 {
   return timerCounter;
 }
 
-  /*
-*  This function sets up Timer A to use ACLK which is a 32.768kHz Watch Crystal, to run in "Up Mode" and generate
-*  an interrupt every second
-*/
+/*
+ * This function is also a  callback function declared in net/clock.h.
+ * It initializes the clock for 1 second.
+ *  This function sets up Timer A to use ACLK which is a 32.768kHz Watch Crystal, to run in "Up Mode" and generate
+ *  an interrupt every second
+ */
 //! initialize clock
 void clock_init(void)
 {
@@ -81,16 +86,6 @@ void uip_log(char *msg)
   printf("%s",msg);
 #endif 
 }
-/*
-// Callback for when DHCP client has been configured.
-void dhcpc_configured(const struct dhcpc_state *s)
-{
-	uip_sethostaddr(&s->ipaddr);
-	uip_setnetmask(&s->netmask);
-	uip_setdraddr(&s->default_router);
-}
-
-*/
 
 int main(void)
 {
@@ -112,27 +107,11 @@ int main(void)
    SCFI0 = (FLLD_2 | FN_8);               //Set Multiplier to 2, and DCO range to 8MHz nominal
    SCFQCTL = 121;                         //7.995392Mhz Operation with No Modulation
   
-  P5OUT|=BIT1;
-		  _delay_ms(100);
-		  P5OUT&=~BIT1;
-		  _delay_ms(100);
-		  
-		  P5OUT|=BIT1;
-		  _delay_ms(100);
-		  P5OUT&=~BIT1;
-		  _delay_ms(100);
-		  
   //setup serial port 
   
 #if DEBUG_SERIAL
     debug_serial_init();
-    printf("asd  %d",23244);
-    while(!(IFG2 & UCA0TXIFG));   //Wait until transmit buffer is empty
-   	UCA0TXBUF = 0x90;                 //Send character
-   	debug_puts("Rounak");
 #endif 
-
-
 	
 	for(i=0;i<6;i++)
 		uNet_eth_address.addr[i]=_eth_addr[i];
@@ -154,22 +133,22 @@ int main(void)
 
   uip_setethaddr(uNet_eth_address);
 
+//init uIP
 #if DEBUG_SERIAL
   printf("Initializing uIP...\r\n");
 #endif 
-  //init uIP
   uip_init();
 
+  //init ARP cache
 #if DEBUG_SERIAL
   printf("Initializing ARP...\r\n");
 #endif 
-  //init ARP cache
   uip_arp_init();
 
+  // init periodic timer
 #if DEBUG_SERIAL
   printf("Initializing timer...\r\n");
 #endif 
-  // init periodic timer
   clock_init();
 
 #if DEBUG_SERIAL
@@ -200,14 +179,14 @@ int main(void)
 
 #endif
 
-		uip_ipaddr(ipaddr, _ip_addr[0], _ip_addr[1], _ip_addr[2], _ip_addr[3]);
+	uip_ipaddr(ipaddr, _ip_addr[0], _ip_addr[1], _ip_addr[2], _ip_addr[3]);
     uip_sethostaddr(ipaddr);
 
     uip_ipaddr(ipaddr, _net_mask[0], _net_mask[1], _net_mask[2], _net_mask[3]);
     uip_setnetmask(ipaddr);
 
-		uip_ipaddr(ipaddr, _gateway[0], _gateway[1], _gateway[2], _gateway[3]);
-		uip_setdraddr(ipaddr);
+	uip_ipaddr(ipaddr, _gateway[0], _gateway[1], _gateway[2], _gateway[3]);
+	uip_setdraddr(ipaddr);
 	} else {
 #if DEBUG_SERIAL
 		printf("Going to query DHCP server...\r\n");
@@ -223,38 +202,22 @@ int main(void)
   timer_set(&arp_timer, CLOCK_SECOND * 10);
 
 	example1_init();
-/*
-	if(_enable_dhcp)
-	{
-		dhcpc_init(&uNet_eth_address.addr[0], 6);
-		dhcpc_request();
-	}
-*/
-	/* Initialize Scheduler so that it can be used */
-	//Scheduler_Init();
 
-	/* Initialize USB Subsystem */
-	//USB_Init();
-
-	//Scheduler_SetTaskMode(NetTask, TASK_RUN);
-
-
-	/* Scheduling - routine never returns, so put this last in the main function */
-	//Scheduler_Start();
 #if DEBUG_SERIAL
 		printf("Starting main loop...\r\n");
 #endif
 	while(1) {
+		//Calling the network loop
 		NetTask();
 		
 	}
 }
 
-//! netork loop
+//! network loop
 TASK(NetTask)
 {
   u8_t i;
-
+	//polling the nic chip for new packets.
 	uip_len = nic_poll();
 	if(uip_len > 0) {
 			//////////////////////////////////////////////////////////////////

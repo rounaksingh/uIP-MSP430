@@ -9,7 +9,7 @@
 #include <string.h>
 
 //---------------------------------------------------------------------------------------------------------------
-
+// Functions implementing the uart tx procedures for built-in printf
 void debug_putc(unsigned char);
 void debug_puts(char *);
 //------------------------------------------------------------------------------
